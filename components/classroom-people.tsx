@@ -56,7 +56,7 @@ export function PeopleTab({ chatroomId }: PeopleTabProps) {
                       </h3>
                       <Crown className="w-3 h-3 sm:w-4 sm:h-4 text-yellow-500 flex-shrink-0" />
                     </div>
-                    <p className="text-xs sm:text-sm text-muted-foreground">Teacher</p>
+                    <p className="text-xs sm:text-sm text-muted-foreground">Administrator</p>
                   </div>
                 </div>
 
