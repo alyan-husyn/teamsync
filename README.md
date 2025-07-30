@@ -16,6 +16,7 @@ Use the following accounts to log in:
 
 - **Admin Login**  
   Username: `admin`  
+  Password: `admin123`
 
 ## Features
 
