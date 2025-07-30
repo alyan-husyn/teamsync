@@ -4,10 +4,6 @@ A web-based collaboration platform built with **Next.js**, designed for structur
 
 ## Live Demo
 
-[https://teamsync-three.vercel.app/](https://teamsync-three.vercel.app/)
-
-## Demo Credentials
-
 Use the following accounts to log in:
 
 - **User Login**  
@@ -17,6 +13,8 @@ Use the following accounts to log in:
 - **Admin Login**  
   Username: `admin`  
   Password: `admin123`
+
+  [https://teamsync-three.vercel.app/](https://teamsync-three.vercel.app/)
 
 ## Features
 
