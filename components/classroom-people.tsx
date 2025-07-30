@@ -111,7 +111,7 @@ export function PeopleTab({ chatroomId }: PeopleTabProps) {
                     <h3 className="font-medium text-sm sm:text-base truncate">
                       {student.name}
                     </h3>
-                    <p className="text-xs sm:text-sm text-muted-foreground">Student</p>
+                    <p className="text-xs sm:text-sm text-muted-foreground">Memeber</p>
                   </div>
                 </div>
 
