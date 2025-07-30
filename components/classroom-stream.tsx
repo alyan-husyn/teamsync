@@ -224,7 +224,7 @@ export function StreamTab({ chatroomId, chatroom }: StreamTabProps) {
                 {/* Attachment Options */}
                 <div className="flex flex-col sm:flex-row flex-wrap items-start gap-4 w-full md:w-1/2">
 
-                  {/* Multi-select for Ideas/Tags */} 
+                  {/* Multi-select for Ideas/Tags */}
                   <div className="min-w-[200px] sm:min-w-[250px] md:min-w-[300px]">
                     <ReactSelect
                       options={tagOptions}
@@ -380,14 +380,14 @@ export function StreamTab({ chatroomId, chatroom }: StreamTabProps) {
               className="shadow-sm hover:shadow-md transition-shadow duration-200"
             >
               {/* Post Header */}
-              <div className="flex items-start gap-4 p-6 pb-4">
-                <div className="w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center flex-shrink-0">
-                  <FileText className="w-5 h-5 text-white" />
+              <div className="flex items-start gap-2 sm:gap-4 p-3 sm:p-6 pb-4">
+                <div className="w-8 h-8 sm:w-10 sm:h-10 bg-orange-500 rounded-full flex items-center justify-center flex-shrink-0">
+                  <FileText className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2 mb-1">
-                    <span className="font-medium text-foreground">{post.author}</span>
-                    <span className="text-sm text-muted-foreground">
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2 mb-1">
+                    <span className="font-medium text-foreground text-sm sm:text-base">{post.author}</span>
+                    <span className="hidden sm:inline text-xs sm:text-sm text-muted-foreground">
                       posted an update
                     </span>
                     {/* {post.categories && post.categories.length > 0 && (
@@ -396,15 +396,15 @@ export function StreamTab({ chatroomId, chatroom }: StreamTabProps) {
                       </span>
                     )} */}
                   </div>
-                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2 text-xs sm:text-sm text-muted-foreground">
                     <span><ClientTime date={post.createdAt} /></span>
                     {post.status !== "pending" && (
-                      <>
-                        <span>•</span>
+                      <div className="hidden min-[441px]:flex items-center gap-2">
+                        <span className="hidden sm:inline">•</span>
                         <span className={getStatusColor(post.status)}>
                           {post.status.replace("-", " ").toUpperCase()}
                         </span>
-                      </>
+                      </div>  
                     )}
                   </div>
                 </div>
@@ -413,9 +413,9 @@ export function StreamTab({ chatroomId, chatroom }: StreamTabProps) {
                     <Button
                       variant="ghost"
                       size="icon"
-                      className="text-muted-foreground hover:text-foreground flex-shrink-0"
+                      className="text-muted-foreground hover:text-foreground flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10"
                     >
-                      <MoreHorizontal className="w-5 h-5" />
+                      <MoreHorizontal className="w-4 h-4 sm:w-5 sm:h-5" />
                     </Button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="end">
@@ -442,8 +442,17 @@ export function StreamTab({ chatroomId, chatroom }: StreamTabProps) {
                 </DropdownMenu>
               </div>
 
+              {post.status !== "pending" && (
+                <div className="hidden px-3 max-[440px]:flex mt-0">
+                  <span className={`${getStatusColor(post.status)} font-medium`}>
+                    [{post.status.replace("-", " ").toUpperCase()}]
+                  </span>
+                </div>
+              )}
+
+
               {/* Post Content */}
-              <div className="px-6 pb-4">
+              <div className="px-3 sm:px-6 pb-4">
                 {editingPost === post.id ? (
                   <div className="space-y-4">
                     <Textarea
@@ -521,11 +530,11 @@ export function StreamTab({ chatroomId, chatroom }: StreamTabProps) {
 
                     {/* Comments */}
                     {post.comments.length > 0 && (
-                      <div className="space-y-3 mb-4 pl-4 border-l-2 border-border">
+                      <div className="space-y-3 mb-4 pl-2 sm:pl-4 border-l-2 border-border">
                         {post.comments.map((comment, index) => (
                           <div key={index} className="flex items-start justify-between group">
                             <div className="flex-1 min-w-0">
-                              <div className="text-sm">
+                              <div className="text-xs sm:text-sm">
                                 <span className="font-medium text-foreground">{comment.user}:</span>{" "}
                                 <span className="text-muted-foreground">{comment.content}</span>
                               </div>
@@ -550,8 +559,8 @@ export function StreamTab({ chatroomId, chatroom }: StreamTabProps) {
 
                     {/* Inline Comment Input */}
                     {commentingPost === post.id && (
-                      <div className="mb-4 pl-4 border-l-2 border-primary">
-                        <div className="flex gap-2">
+                      <div className="mb-4 pl-2 sm:pl-4 border-l-2 border-primary">
+                        <div className="flex flex-col sm:flex-row gap-2">
                           <Textarea
                             placeholder="Write your comment..."
                             value={commentContent}
@@ -559,7 +568,7 @@ export function StreamTab({ chatroomId, chatroom }: StreamTabProps) {
                             rows={2}
                             className="flex-1 text-sm"
                           />
-                          <div className="flex flex-col gap-1">
+                          <div className="flex sm:flex-col gap-1">
                             <Button
                               onClick={() => handleAddComment(post.id)}
                               disabled={!commentContent.trim()}
@@ -576,13 +585,13 @@ export function StreamTab({ chatroomId, chatroom }: StreamTabProps) {
                     )}
 
                     {/* Actions */}
-                    <div className="flex gap-2 pt-4 border-t border-border">
+                    <div className="flex flex-col sm:flex-row gap-2 pt-4 border-t border-border">
                       <div className="relative">
                         <Button
                           variant="ghost"
                           size="sm"
                           onClick={() => setReactionPopup(reactionPopup === post.id ? null : post.id)}
-                          className="text-muted-foreground hover:text-foreground hover:bg-accent"
+                          className="text-muted-foreground hover:text-foreground hover:bg-accent w-full sm:w-auto"
                         >
                           <ThumbsUp className="w-4 h-4 mr-2" />
                           React
@@ -609,7 +618,7 @@ export function StreamTab({ chatroomId, chatroom }: StreamTabProps) {
                         variant="ghost"
                         size="sm"
                         onClick={() => handleToggleCommentInput(post.id)}
-                        className="text-muted-foreground hover:text-foreground hover:bg-accent"
+                        className="text-muted-foreground hover:text-foreground hover:bg-accent w-full sm:w-auto"
                       >
                         <MessageCircle className="w-4 h-4 mr-2" />
                         Comment
